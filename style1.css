@@ -61,7 +61,7 @@ div.stamp img{
     position: absolute;
     z-index: -2;
     top:100vh;
-    transition: top 0.2s;
+    /*transition: top 0.2s;*/
 }
 .bg1bw img{
     filter: blur(2px) grayscale(1) brightness(24%);
@@ -88,7 +88,7 @@ img.bg1colimg{
     filter: brightness(60%);
     width: 100vw;
     top:100vh;
-    transition: top 0.2s;
+    /*transition: top 0.2s;*/
 }
 .slide1{
     height:100vh;
