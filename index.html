@@ -154,7 +154,7 @@
 
         window.addEventListener('scroll', function () {
 
-            var value = window.scrollY;
+            var value = $(window).scrollTop();
             bg1bw.style.top = (window.innerHeight - value)+ 'px';
             bg1colimg.style.top = (window.innerHeight - value) + 'px';
 
