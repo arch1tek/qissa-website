@@ -1,0 +1,204 @@
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="style1.css">
+</head>
+
+<body>
+    <div class="stampcollection">
+        <div class="frame">
+            <img src="./asset/qissastampframe.png" alt="">
+        </div>
+        <div class="stamp">
+            <img src="./asset/qissastamp.png" alt="">
+        </div>
+        <div class="desc">
+            <h1>
+                <br> Tell us what you find beautiful in the world.
+            </h1>
+        </div>
+        <div class="bg1bw">
+            <img src="./asset/bg1.jpeg" alt="">
+        </div>
+        <div class="bg1col">
+            <img src="./asset/bg1.jpeg" alt="" class="bg1colimg">
+        </div>
+    </div>
+    <section class="slide2">
+        <img src="./asset/paper.png" alt="" class="paper">
+
+
+        
+
+        <div id="container">
+            <table>
+                <tr><span id="what"> What is a Qissa?</span></tr>
+                <tr> <span id="text1"></span>
+                    <span id="text2"></span></tr>
+            </table>
+            
+           
+        </div>
+
+
+
+        <svg id="filters">
+            <defs>
+                <filter id="threshold">
+                    <feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0
+                                            0 1 0 0 0
+                                            0 0 1 0 0
+                                            0 0 0 255 -140" />
+                </filter>
+            </defs>
+        </svg>
+    </section>
+
+
+    <script>
+        var lastScrollTop = 0;
+        var scrollval;
+        var scrollindex;
+        scrolllist = [0, window.innerHeight, 2 * window.innerHeight];
+        // element should be replaced with the actual target element on which you have applied scroll, use window in case of no target element.
+
+
+        const elts = {
+            text1: document.getElementById("text1"),
+            text2: document.getElementById("text2")
+        };
+
+        const texts = [
+            "a fleeting thought",
+            "a song lyric",
+            "a picture",
+            "a movie quote",
+        ];
+
+        const morphTime = 1;
+        const cooldownTime = 0.25;
+
+        let textIndex = texts.length - 1;
+        let time = new Date();
+        let morph = 0;
+        let cooldown = cooldownTime;
+
+        elts.text1.textContent = texts[textIndex % texts.length];
+        elts.text2.textContent = texts[(textIndex + 1) % texts.length];
+
+        function doMorph() {
+            morph -= cooldown;
+            cooldown = 0;
+
+            let fraction = morph / morphTime;
+
+            if (fraction > 1) {
+                cooldown = cooldownTime;
+                fraction = 1;
+            }
+
+            setMorph(fraction);
+        }
+
+        function setMorph(fraction) {
+            elts.text2.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+            elts.text2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+
+            fraction = 1 - fraction;
+            elts.text1.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+            elts.text1.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+
+            elts.text1.textContent = texts[textIndex % texts.length];
+            elts.text2.textContent = texts[(textIndex + 1) % texts.length];
+        }
+
+        function doCooldown() {
+            morph = 0;
+
+            elts.text2.style.filter = "";
+            elts.text2.style.opacity = "100%";
+
+            elts.text1.style.filter = "";
+            elts.text1.style.opacity = "0%";
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            let newTime = new Date();
+            let shouldIncrementIndex = cooldown > 0;
+            let dt = (newTime - time) / 1000;
+            time = newTime;
+
+            cooldown -= dt;
+
+            if (cooldown <= 0) {
+                if (shouldIncrementIndex) {
+                    textIndex++;
+                }
+
+                doMorph();
+            } else {
+                doCooldown();
+            }
+        }
+
+        animate();
+
+        /*function newscrollTo(c,e,d){d||(d=easeOutCuaic);
+            var a=document.documentElement;
+            if(0===a.scrollTop){var b=a.scrollTop;
+            ++a.scrollTop;a=b+1===a.scrollTop--?a:document.body}
+            b=a.scrollTop;0>=e||("object"===typeof b&&(b=b.offsetTop),
+            "object"===typeof c&&(c=c.offsetTop),function(a,b,c,f,d,e,h){
+            function g(){0>f||1<f||0>=d?a.scrollTop=c:(a.scrollTop=b-(b-c)*h(f),
+            f+=d*e,setTimeout(g,e))}g()}(a,b,c,0,1/e,20,d))};
+            function easeOutCuaic(t){t--;return t*t*t+1;}*/
+
+        let bg1bw = document.querySelector('.bg1bw');
+        let bg1colimg = document.querySelector('.bg1colimg')
+        let frame = document.querySelector('.frame')
+        let stamp = document.querySelector('.stamp')
+        let clip = document.querySelector('.bg1col')
+        let slide2 = document.querySelector('.slide2')
+
+        window.addEventListener('scroll', function () {
+
+            var value = window.scrollY;
+            bg1bw.style.top = window.innerHeight - value + 'px';
+            bg1colimg.style.top = (window.innerHeight - value) + 'px';
+
+
+            /*var st = window.pageYOffset; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+            if (st > lastScrollTop) {
+                window.scrollTo(0, (value / window.innerHeight + 1) * window.innerHeight);
+            } else {
+                // upscroll code
+            }
+            lastScrollTop = st <= 0 ? 0 : st;*/
+
+            if (value > 2 * window.innerHeight) {
+                frame.style.top = (-value + 2 * window.innerHeight);
+                stamp.style.top = (-value + 2 * window.innerHeight);
+                clip.style.clipPath = 'polygon(calc(50vw - 110px) calc(50vh - ' + (150 + value - 2 * window.innerHeight) + 'px), calc(50vw - 110px) calc(50vh + ' + (150 - value + 2 * window.innerHeight) + 'px), calc(50vw + 115px) calc(50vh + ' + (150 - value + 2 * window.innerHeight) + 'px), calc(50vw + 115px) calc(50vh - ' + (150 + value - 2 * window.innerHeight) + 'px))'
+            }
+            else {
+                frame.style.top = 0;
+                stamp.style.top = 0;
+                clip.style.clipPath = "polygon(calc(50vw - 110px) calc(50vh - 150px),calc(50vw - 110px) calc(50vh + 150px),calc(50vw + 115px) calc(50vh + 150px), calc(50vw + 115px) calc(50vh - 150px))"
+            }
+            /*if (value > window.innerHeight * 1.2) {
+                slide2.style.top = 170 + 'vh';
+            }
+            else {
+                slide2.style.top = 200 + 'vh';
+            }*/
+
+
+        })
+    </script>
+</body>
+
+</html>
