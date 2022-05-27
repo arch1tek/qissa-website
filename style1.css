@@ -119,12 +119,12 @@ img.bg1colimg{
 .slide1 div p{
     text-align: center;
     color:antiquewhite;
-    font-family: "Raleway";
+    font-family: "Raleway", sans-serif;;
 }
 p.qissa{
     text-align: center;
     color:antiquewhite;
-    font-family: "Raleway";
+    font-family: "Raleway", sans-serif;;
     font-weight: 700;
     font-size:xx-large;
 }
