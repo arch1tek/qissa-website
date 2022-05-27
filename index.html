@@ -145,18 +145,6 @@
             }
         }
 
-        
-
-        /*function newscrollTo(c,e,d){d||(d=easeOutCuaic);
-            var a=document.documentElement;
-            if(0===a.scrollTop){var b=a.scrollTop;
-            ++a.scrollTop;a=b+1===a.scrollTop--?a:document.body}
-            b=a.scrollTop;0>=e||("object"===typeof b&&(b=b.offsetTop),
-            "object"===typeof c&&(c=c.offsetTop),function(a,b,c,f,d,e,h){
-            function g(){0>f||1<f||0>=d?a.scrollTop=c:(a.scrollTop=b-(b-c)*h(f),
-            f+=d*e,setTimeout(g,e))}g()}(a,b,c,0,1/e,20,d))};
-            function easeOutCuaic(t){t--;return t*t*t+1;}*/
-
         let bg1bw = document.querySelector('.bg1bw');
         let bg1colimg = document.querySelector('.bg1colimg')
         let frame = document.querySelector('.frame')
@@ -167,17 +155,8 @@
         window.addEventListener('scroll', function () {
 
             var value = window.scrollY;
-            bg1bw.style.top = window.innerHeight - value + 'px';
+            bg1bw.style.top = (window.innerHeight - value)+ 'px';
             bg1colimg.style.top = (window.innerHeight - value) + 'px';
-
-
-            /*var st = window.pageYOffset; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
-            if (st > lastScrollTop) {
-                window.scrollTo(0, (value / window.innerHeight + 1) * window.innerHeight);
-            } else {
-                // upscroll code
-            }
-            lastScrollTop = st <= 0 ? 0 : st;*/
 
             if (value >  1.2*window.innerHeight) {
                 animate();
@@ -190,14 +169,6 @@
                 stamp.style.top = 0;
                 clip.style.clipPath = "polygon(calc(50vw - 110px) calc(50vh - 150px),calc(50vw - 110px) calc(50vh + 150px),calc(50vw + 115px) calc(50vh + 150px), calc(50vw + 115px) calc(50vh - 150px))"
             }
-            /*if (value > window.innerHeight * 1.2) {
-                slide2.style.top = 170 + 'vh';
-            }
-            else {
-                slide2.style.top = 200 + 'vh';
-            }*/
-
-
         })
     </script>
 </body>
