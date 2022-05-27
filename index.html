@@ -179,10 +179,10 @@
             }
             lastScrollTop = st <= 0 ? 0 : st;*/
 
-            if (value > 2 * window.innerHeight) {
-                frame.style.top = (-value + 2 * window.innerHeight);
-                stamp.style.top = (-value + 2 * window.innerHeight);
-                clip.style.clipPath = 'polygon(calc(50vw - 110px) calc(50vh - ' + (150 + value - 2 * window.innerHeight) + 'px), calc(50vw - 110px) calc(50vh + ' + (150 - value + 2 * window.innerHeight) + 'px), calc(50vw + 115px) calc(50vh + ' + (150 - value + 2 * window.innerHeight) + 'px), calc(50vw + 115px) calc(50vh - ' + (150 + value - 2 * window.innerHeight) + 'px))'
+            if (value >  1.2*window.innerHeight) {
+                frame.style.top = (-value + 1.2*window.innerHeight);
+                stamp.style.top = (-value + 1.2*window.innerHeight);
+                clip.style.clipPath = 'polygon(calc(50vw - 110px) calc(50vh - ' + (150 + value - 1.2*window.innerHeight) + 'px), calc(50vw - 110px) calc(50vh + ' + (150 - value + 1.2*window.innerHeight) + 'px), calc(50vw + 115px) calc(50vh + ' + (150 - value + 1.2*window.innerHeight) + 'px), calc(50vw + 115px) calc(50vh - ' + (150 + value - 1.2*window.innerHeight) + 'px))'
             }
             else {
                 frame.style.top = 0;

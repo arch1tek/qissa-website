@@ -96,7 +96,7 @@ img.bg1colimg{
 .slide2{
     width: 100vw;
     height: 100vh;
-    top:275vh;
+    top:200vh;
     position: absolute;
     z-index: 3;
     transition: top 0.5s;
