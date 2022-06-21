@@ -14,12 +14,14 @@ body{
 }
 
 .stampcollection{
+    -webkit-backface-visibility: hidden;
     position:fixed;
     height:100vh;
     top:0;
     left:-0.5;
 }
 .frame{
+    -webkit-backface-visibility: hidden;
     top:0;
     position: absolute;
     z-index: 1;
@@ -56,6 +58,7 @@ div.stamp img{
     margin: auto;
 }
 .bg1bw{
+    -webkit-backface-visibility: hidden;
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -71,6 +74,7 @@ div.stamp img{
     top:200vh;
 }
 .bg1col{
+    -webkit-backface-visibility: hidden;
     background: #000;
     filter: blur(1.2px);
     position: absolute;
@@ -91,14 +95,16 @@ img.bg1colimg{
     transition: top 0.2s;
 }
 .slide1{
+    -webkit-backface-visibility: hidden;
     height:100vh;
 }
 .slide2{
     width: 100vw;
-    height: 100vh;
+    height: 130vh;
     top:200vh;
     position: absolute;
     z-index: 3;
+    overflow:hidden;
     /*transition: top 0.5s;*/
 }
 .paper{
